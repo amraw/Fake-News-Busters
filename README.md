@@ -20,6 +20,5 @@ Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote
 
 The features extracted from the headline and body are mentioned below:- 
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
-2. 
-![equation](http://latex.codecogs.com/gif.latex?Concentration%3D%5Cfrac%7BTotalTemplate%7D%7BTotalVolume%7D)  
+2. ![equation](http://latex.codecogs.com/gif.latex?Concentration%3D%5Cfrac%7BTotalTemplate%7D%7BTotalVolume%7D)  
 
