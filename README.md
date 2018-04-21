@@ -1,4 +1,3 @@
-# Fake News Busters - CS670 Course Project
 ## 1. Introduction
 Fake news has been present in the society for a long time, but recent advances in social media platforms and technology, in general, have allowed these news articles to propagate very fast. Fake news, defined by the New York Times as “a made-up story with an intention to deceive, often for a secondary gain,” is arguably one of the most serious challenges facing the news industry today. In a December Pew Research poll, 64% of US adults said that “made-up news” has caused a “great deal of confusion” about the facts of current events. It is challenging and even unrealistic to identify rumors and hoaxes in the information age relying only on the traditional human-based fact checkers, due to both the tremendous scale and the real-time nature. We can leverage on
 machine learning / deep learning techniques for the problem of stance detection.
