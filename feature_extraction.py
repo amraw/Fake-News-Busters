@@ -43,6 +43,7 @@ def get_cosine_similarity(headlines, bodies, vec):
 
 
 def gen_or_load_feats(feat_fn, headlines, bodies, feature_file, vec=None):
+    print(os.path.isfile(feature_file))
     if not os.path.isfile(feature_file):
         feats = []
         if not vec is None:
@@ -257,7 +258,7 @@ def hand_features(headlines, bodies):
 
 def get_all_features(name, headline, headline_cl, body, body_cl, vec):
 
-    X_overlap = gen_or_load_feats(word_overlap_features, headline, body, "features/overlap." + name + ".npy")
+    X_overlap = gen_or_load_feats(word_overlap_features, headline, body, "../features/overlap." + name + ".npy")
     X_refuting = gen_or_load_feats(refuting_features, headline, body, "features/refuting." + name + ".npy")
     X_polarity = gen_or_load_feats(polarity_features, headline, body, "features/polarity." + name + ".npy")
     X_discuss = gen_or_load_feats(discuss_features, headline, body, "features/discuss." + name + ".npy")
@@ -280,45 +281,26 @@ def get_tffreq_vec(alltext, lim_unigram):
     bow = bow_vectorizer.fit_transform(alltext)  # Train set only
     return TfidfTransformer(use_idf=False).fit(bow)
 
-def get_headline_body_vec(name,headlines, bodies, tfidf_vec):
-    feature_vec = []
-    file_name = "../features/head_body_vec." + name + ".npy"
-    if not os.path.isfile(file_name):
-        for headline, body in tqdm(zip(headlines, bodies)):
-            body_setences = body.split(".")
-            headline_vector = tfidf_vec.transform([headline]).toarray()
-            body_cosine = []
-            for body in body_setences:
-                body = clean(body)
-                body_vector = tfidf_vec.transform([body]).toarray()
-                cosine_value = cosine_similarity(headline_vector, body_vector)[0]
-                body_cosine.append((body, cosine_value))
-            body_cosine = sorted(body_cosine, key=lambda word: word[1], reverse=True)
-            len_numb = 3 if 3 < len(body_cosine) else len(body_cosine)
-            body_str = ""
-            for index in range(len_numb):
-                body_str += body_cosine[index][0]
-            headline_vector = tfidf_vec.transform([headline]).toarray()
-            body_tf_vec = tfidf_vec.transform([body_str]).toarray()
-            feat_vec = np.squeeze(np.c_[headline_vector, body_tf_vec])
-            feature_vec.append(feat_vec)
-        np.save(file_name, feature_vec)
 
-        return np.load(file_name)
-
-
-def headline_body_vec(name, headlines, bodies, vec):
-    headline_body_vec = []
-    filename = "features/overlap." + name + ".npy"
+def headline_body_vec(name, headlines, bodies, global_feats, bow_vectorizer, tfreq_vectorizer):
+    data = []
+    filename = "features/headline_body_vec." + name + ".npy"
     if not os.path.isfile(filename):
-        for headline, body in tqdm(zip(headlines, bodies)):
-            headline_vec = vec.transform(headline)
-            body_vec = vec.transform(body)
-            headline_body_vec.append(np.c_[headline_vec, body_vec])
-        np.save(filename, headline_body_vec)
-    headline_body_vec = np.load(filename)
-    return headline_body_vec
+        for headline, body, glob_feat in tqdm(zip(headlines, bodies, global_feats)):
+            head_bow = bow_vectorizer.transform([headline]).toarray()
+            head_tf = tfreq_vectorizer.transform(head_bow).toarray()[0].reshape(1, -1)
+            body_bow = bow_vectorizer.transform([body]).toarray()
+            body_tf = tfreq_vectorizer.transform(body_bow).toarray()[0].reshape(1, -1)
+            feat_vec = np.squeeze(np.c_[head_tf, body_tf, glob_feat])
+            data.append(feat_vec)
+        np.save(filename, data)
+        data = np.load(filename)
+    return data
 
 
+def get_tfreq_vectorizer(headline, bodies, lim_unigram):
+    bow_vectorizer = CountVectorizer(max_features=lim_unigram)
+    bow = bow_vectorizer.fit_transform(headline + bodies)  # Train set only
 
-
+    tfreq_vectorizer = TfidfTransformer(use_idf=False).fit(bow)
+    return bow_vectorizer, tfreq_vectorizer
