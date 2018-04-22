@@ -21,4 +21,6 @@ Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote
 The features extracted from the headline and body are mentioned below:- 
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
 2. ![equation](http://latex.codecogs.com/gif.latex?Concentration%3D%5Cfrac%7BTotalTemplate%7D%7BTotalVolume%7D)  
-
+3. Word overlap : This feature depicts overlap between News headline and News Body. Higher the overlap, more the certainty that body of the News article agrees with headline. 
+4. Presence of refuting words : If the news article contains refuting words such as 'fraud', 'hoax', 'deny' , it wouldn't inspire much confidence into the news article. 
+5.
