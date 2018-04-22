@@ -19,10 +19,10 @@ import sys
 import io
 
 
-GLOVE_DIR = "../gloVe"
-PREDICTIONS_FILE = '../prediction/feedforward_network'
-TEST_FILE = '../fnc-1-master/test_stances.csv'
-OBJECT_DUMP = '../objects'
+GLOVE_DIR = "gloVe"
+PREDICTIONS_FILE = 'prediction/feedforward_network'
+TEST_FILE = 'fnc-1-master/test_stances.csv'
+OBJECT_DUMP = 'objects'
 
 
 def feed_forward_model(numb_layers):
