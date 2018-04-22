@@ -133,7 +133,7 @@ def lstm_model_4(body_length, numb_layers):
         bow_list_data.append(fake_hist.history['val_loss'])
         pickle.dump(bow_list_data, bow_hist)
 
-    result = fake_nn.predict([test_data], batch_size=128)
+    result = fake_nn.predict([test_data, test_global_feature], batch_size=128)
 
     result_str = fexc.convert_lable_string(result)
     with io.open(TEST_FILE, mode='r', encoding='utf8') as read_file:
