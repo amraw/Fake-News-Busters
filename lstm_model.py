@@ -20,7 +20,7 @@ GLOVE_DIR = "gloVe"
 PREDICTIONS_FILE = 'prediction/lstm_seperate_headline_body_'
 TEST_FILE = 'fnc-1-master/test_stances.csv'
 OBJECT_DUMP = 'objects'
-EMBEDDING_DIM = 50
+EMBEDDING_DIM = 100
 
 
 def lstm_model(body_length, numb_layers):
@@ -106,7 +106,7 @@ def lstm_model(body_length, numb_layers):
     model_checkpoint = ModelCheckpoint(bst_model_path, save_best_only=True, save_weights_only=True)
 
     fake_hist = fake_nn.fit([train_headlines_final, train_bodies_final], train_stances_final, batch_size=128,
-                            epochs=1, shuffle=True, validation_data=([headlines_val, bodies_val], stances_val),
+                            epochs=20, shuffle=True, validation_data=([headlines_val, bodies_val], stances_val),
                             callbacks=[early_stopping, model_checkpoint])
     bow_list_data = []
     with open(os.path.join(OBJECT_DUMP, "lstm_seperate_headline_body_" + str(body_length) + "_" + str(numb_layers) + ".txt"), 'wb') as bow_hist:

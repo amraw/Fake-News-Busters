@@ -17,7 +17,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 def get_embeddings_index(glove_dir):
     embeddings_index = {}
-    with io.open(os.path.join(glove_dir, 'glove.6B.50d.txt'), mode='r', encoding='utf8') as embedding:
+    with io.open(os.path.join(glove_dir, 'glove.6B.100d.txt'), mode='r', encoding='utf8') as embedding:
         for line in embedding:
             values = line.split()
             word = values[0]
@@ -45,18 +45,18 @@ def lstm_model(headline_length, body_length, embedding_dim, word_index, embeddin
 
     headline_input = Input(shape=(headline_length,), dtype='int32')
     headline_embedding = headline_embedding_layer(headline_input)
-    headline_nor = BatchNormalization()(headline_embedding)
-    headline_lstm = LSTM(cells)(headline_nor)
+    #headline_nor = BatchNormalization()(headline_embedding)
+    headline_lstm = LSTM(cells)(headline_embedding)
 
     body_input = Input(shape=(body_length,), dtype='int32')
     body_embedding = bodies_embedding_layer(body_input)
-    body_nor = BatchNormalization()(body_embedding)
-    body_lstm = LSTM(cells)(body_nor)
+    #body_nor = BatchNormalization()(body_embedding)
+    body_lstm = LSTM(cells)(body_embedding)
 
     concat = concatenate([headline_lstm, body_lstm])
-    normalize = BatchNormalization()(concat)
+    #normalize = BatchNormalization()(concat)
 
-    preds = Dense(4, activation='softmax')(normalize)
+    preds = Dense(4, activation='softmax')(concat)
 
     fake_nn = Model([headline_input, body_input], outputs=preds)
     print(fake_nn.summary())
@@ -73,20 +73,20 @@ def lstm_model_2(globel_vectors, headline_length, body_length, embedding_dim, wo
 
     headline_input = Input(shape=(headline_length,), dtype='int32')
     headline_embedding = headline_embedding_layer(headline_input)
-    headline_nor = BatchNormalization()(headline_embedding)
-    headline_lstm = LSTM(cells)(headline_nor)
+    #headline_nor = BatchNormalization()(headline_embedding)
+    headline_lstm = LSTM(cells)(headline_embedding)
 
     body_input = Input(shape=(body_length,), dtype='int32')
     body_embedding = bodies_embedding_layer(body_input)
-    body_nor = BatchNormalization()(body_embedding)
-    body_lstm = LSTM(cells)(body_nor)
+    #body_nor = BatchNormalization()(body_embedding)
+    body_lstm = LSTM(cells)(body_embedding)
 
     global_vector_input = Input(shape=(globel_vectors,), dtype='float32')
 
     concat = concatenate([headline_lstm, body_lstm, global_vector_input])
-    normalize = BatchNormalization()(concat)
+    #normalize = BatchNormalization()(concat)
 
-    preds = Dense(4, activation='softmax')(normalize)
+    preds = Dense(4, activation='softmax')(concat)
 
     fake_nn = Model([headline_input, body_input, global_vector_input], outputs=preds)
     print(fake_nn.summary())
@@ -111,7 +111,7 @@ def lstm_model_3(headline_length, body_length, embedding_dim, word_index, embedd
 
 
 def feed_forward_network(input_vector, activation, numb_layers, drop_out):
-    input = Input(shape=(input_vector,), dtype='int32')
+    input = Input(shape=(input_vector,), dtype='float32')
     dense = Dense(numb_layers, activation=activation)(input)
     dropout = Dropout(drop_out)(dense)
     normalize = BatchNormalization()(dropout)

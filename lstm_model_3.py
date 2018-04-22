@@ -20,7 +20,7 @@ GLOVE_DIR = "gloVe"
 PREDICTIONS_FILE = 'prediction/lstm_headline_body_combine'
 TEST_FILE = 'fnc-1-master/test_stances.csv'
 OBJECT_DUMP = 'objects'
-EMBEDDING_DIM = 50
+EMBEDDING_DIM = 100
 
 
 def lstm_model_3(body_length, numb_layers):
@@ -110,7 +110,7 @@ def lstm_model_3(body_length, numb_layers):
 
     fake_hist = fake_nn.fit(train_data, train_stances_final,
                             batch_size=128,
-                            epochs=1, shuffle=True,
+                            epochs=20, shuffle=True,
                             validation_data=(val_data, stances_val),
                             callbacks=[early_stopping, model_checkpoint])
     bow_list_data = []
