@@ -257,12 +257,12 @@ def hand_features(headlines, bodies):
 
 def get_all_features(name, headline, headline_cl, body, body_cl, vec):
 
-    X_overlap = gen_or_load_feats(word_overlap_features, headline, body, "../features/overlap." + name + ".npy")
-    X_refuting = gen_or_load_feats(refuting_features, headline, body, "../features/refuting." + name + ".npy")
-    X_polarity = gen_or_load_feats(polarity_features, headline, body, "../features/polarity." + name + ".npy")
-    X_discuss = gen_or_load_feats(discuss_features, headline, body, "../features/discuss." + name + ".npy")
-    X_hand = gen_or_load_feats(hand_features, headline, body, "../features/hand." + name + ".npy")
-    X_cosine = gen_or_load_feats(get_cosine_similarity, headline_cl, body_cl, "../features/cosine." + name + ".npy", vec)
+    X_overlap = gen_or_load_feats(word_overlap_features, headline, body, "features/overlap." + name + ".npy")
+    X_refuting = gen_or_load_feats(refuting_features, headline, body, "features/refuting." + name + ".npy")
+    X_polarity = gen_or_load_feats(polarity_features, headline, body, "features/polarity." + name + ".npy")
+    X_discuss = gen_or_load_feats(discuss_features, headline, body, "features/discuss." + name + ".npy")
+    X_hand = gen_or_load_feats(hand_features, headline, body, "features/hand." + name + ".npy")
+    X_cosine = gen_or_load_feats(get_cosine_similarity, headline_cl, body_cl, "features/cosine." + name + ".npy", vec)
 
     X = np.c_[X_hand, X_polarity, X_refuting, X_discuss, X_overlap, X_cosine]
 
@@ -306,6 +306,18 @@ def get_headline_body_vec(name,headlines, bodies, tfidf_vec):
 
         return np.load(file_name)
 
+
+def headline_body_vec(name, headlines, bodies, vec):
+    headline_body_vec = []
+    filename = "features/overlap." + name + ".npy"
+    if not os.path.isfile(filename):
+        for headline, body in tqdm(zip(headlines, bodies)):
+            headline_vec = vec.transform(headline)
+            body_vec = vec.transform(body)
+            headline_body_vec.append(np.c_[headline_vec, body_vec])
+        np.save(filename, headline_body_vec)
+    headline_body_vec = np.load(filename)
+    return headline_body_vec
 
 
 
