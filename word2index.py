@@ -4,8 +4,8 @@ import torch
 class Word2Index(object):
 
     def __init__(self):
-        self.word2idx = {}
-        self.idx2word = []
+        self.word2idx = {0: 0}
+        self.idx2word = [0]
 
     def add_word(self, word):
         if word not in self.word2idx:

@@ -11,12 +11,19 @@ from word2index import Word2Index
 from embeddings_create import get_embeddings_index, get_embedding_matrix
 import torch
 from torch import nn
+from models import get_batches, EncoderRNN, train, timeSince, showPlot
+from torch.autograd import Variable
+import time
+from torch import optim
+import time
+from torch import optim
 
 GLOVE_DIR = "../gloVe"
 PREDICTIONS_FILE = '../prediction/bi_lstm_concat_'
 TEST_FILE = '../fnc-1-master/test_stances.csv'
 OBJECT_DUMP = '../objects'
 EMBEDDING_DIM = 50
+
 
 def feed_forward_model():
     fexc = Preprocessing()
@@ -36,8 +43,8 @@ def feed_forward_model():
 
     # Word to integer
     train_stances_in = fexc.convert_lable_int(train_stances_cl)
-    onehotencoder = OneHotEncoder()
-    train_stances_in = onehotencoder.fit_transform(train_stances_in).toarray()
+    #onehotencoder = OneHotEncoder()
+    #train_stances_in = onehotencoder.fit_transform(train_stances_in).toarray()
     # perform stemming
     # train_headlines_cl = fexc.perform_stemming_list(train_headlines_cl)
     # train_bodies_cl = fexc.perform_stemming_list(train_bodies_cl)
@@ -76,6 +83,59 @@ def feed_forward_model():
     embed = nn.Embedding((embedding_matrix.shape)[0], EMBEDDING_DIM)
     # pretrained_weight is a numpy matrix of shape (num_embeddings, embedding_dim)
     embed.weight.data.copy_(torch.from_numpy(embedding_matrix))
+    #print(embedding_matrix[0:3, :])
+    batch_size = 256
+    no_batches = int(len(train_stances_in) / batch_size)
+    training_labels = Variable(torch.LongTensor(train_stances_in))
+    headline_seq_length = 50
+    body_seq_length = 150
+    training_x, training_z = get_batches('headline', train_headlines_seq, training_labels, batch_size, headline_seq_length)
+    training_y, training_z = get_batches('body', train_bodies_seq, training_labels, batch_size, body_seq_length)
 
+    hidden_size = 256
+    n_classes = 4
+
+    encoder = EncoderRNN(embedding_matrix.shape[0], hidden_size, n_classes)
+
+    start = time.time()
+    plot_losses = []
+    print_loss_total = 0  # Reset every print_every
+    plot_loss_total = 0  # Reset every plot_every
+    encoder_optimizer = optim.SGD(encoder.parameters(), lr=0.01)
+    criterion = nn.CrossEntropyLoss()
+
+    print_every = 50
+    n_iters = no_batches
+    plot_every = 100
+
+    train_no_batches = (no_batches)
+    no_epochs = 20
+    for e in range(0, no_epochs):
+        for iter in range(1, train_no_batches + 1):
+
+            output = train(training_x[iter - 1], training_y[iter - 1], encoder)
+            print(output.shape,  training_z[iter - 1].shape)
+            print(output[55, :])
+            print(training_z[iter - 1][55])
+            loss = criterion(output, training_z[iter - 1])
+            encoder_optimizer.zero_grad()
+            loss.backward()
+            encoder_optimizer.step()
+
+            print_loss_total += loss
+            plot_loss_total += loss
+            # print(iter)
+            if iter % print_every == 0:
+                print_loss_avg = print_loss_total / print_every
+                print_loss_total = 0
+                print('%s (%d %d%%) %.4f' % (timeSince(start, iter / n_iters),
+                                             iter, iter / n_iters * 100, print_loss_avg))
+
+            if iter % plot_every == 0:
+                plot_loss_avg = plot_loss_total / plot_every
+                plot_losses.append(plot_loss_avg)
+                plot_loss_total = 0
+
+    showPlot(plot_losses)
 
 feed_forward_model()
