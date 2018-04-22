@@ -28,7 +28,7 @@ OBJECT_DUMP = 'objects'
 def feed_forward_model(numb_layers):
     fexc = Preprocessing()
     data = load_data()
-    data.set_path(path='../fnc-1-master')
+    data.set_path(path='fnc-1-master')
     train_stance_data = data.get_headline_body_stance()
     train_bodies_data = data.get_body_id_text()
     train_headlines, train_bodies, train_stances = data.get_mapped_id_body(train_stance_data, train_bodies_data)
