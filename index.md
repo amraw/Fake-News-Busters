@@ -72,5 +72,26 @@ We were able to achieve 87.30 % accuracy on test set after experimenting with di
 
 ## 4. Conclusion and Future Work : 
 
-Honestly, we were suprised to see a simple feedforward network achieving higher accuracy than sophisticated LSTM model with pre-trained embeddings. We could account this to good feature enginering. Our hope before training LSTM was that, it should be able to extract the relevant features onn it's own as it captures the context. But clearly, manual feature engineering is giving us significant increase in accuracy. Now, the obvious question is, why didn't we try feeding engineered features to LSTM, and the simple answer is time restrictions. Three weeks is a really short time frame to implement the models, tune hyperparameters and conduct experiments. Nevertheless, this is something we definitely plan to do in the future. Secondly, we are really eager to try out bi-directional LSTM for this task. Advantages of bi-directional sequential models are well-known over uni-directional models, and this is something we definitely have in our bucketlist. Thirdly, we could always improve upon feature engineering and we plan to extract more relevant features for this task.  
+Honestly, we were suprised to see a simple feedforward network achieving higher accuracy than sophisticated LSTM model with pre-trained embeddings. We could account this to good feature enginering. Our hope before training LSTM was that, it should be able to extract the relevant features onn it's own as it captures the context. But clearly, manual feature engineering is giving us significant increase in accuracy. Now, the obvious question is, why didn't we try feeding engineered features to LSTM, and the simple answer is time restrictions. Three weeks is a really short time frame to implement the models, tune hyperparameters and conduct experiments. Nevertheless, this is something we definitely plan to do in the future. Secondly, we are really eager to try out bi-directional LSTM for this task. Advantages of bi-directional sequential models are well-known over uni-directional models, and this is something we definitely have in our bucketlist. Thirdly, we could always improve upon feature engineering and we plan to extract more relevant features for this task. 
+
+## 5. References:
+ 
+[1] Isabelle Augenstein, Tim Rocktaschel, Andreas Vlachos & Kalina Bontcheva. 2016. Stance detection with bidirectional conditional encoding. In Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing (EMNLP). 
+
+[2] I. Augenstein, T. Rocktaschel, A. Vlachos, and K. Bontcheva. Stance detection with bidirectional conditional encoding. In EMNLP, 2016. 
+
+[3] M. Babakar. Fake News Challenge, 2016.https://http://www.fakenewschallenge.org/. 
+
+[4] W. Ferreira and A. Vlachos. Emergent: a novel data-set for stance classification. In HLT-NAACL, 2016. 
+
+[5] Y. Goldberg and O. Levy. word2vec explained: deriving mikolov et al.’s negative-sampling word-embedding method. CoRR, abs/1402.3722, 2014. 
+
+[6] T. Mikolov, K. Chen, G. S. Corrado, and J. Dean. Efficient estimation of word representations in vector space. CoRR, abs/1301.3781, 2013. 
+
+[7] B. Riedel, I. Augenstein, G. P. Spithourakis, and S. Riedel. A simple but tough-to-beat baseline for the fake news challenge stance detection task. CoRR, abs/1707.03264, 2017. [8] Q. Zeng, Q. Zhou, and S. Xu. Neural stance detectors for fake news challenge. 2017.
+[8] UCL Machine Learning -  https://github.com/uclmr/fakenewschallenge
+
+[9] GloVe: Global Vectors for Word Representation https://nlp.stanford.edu/projects/glove/
+
+[10] Keras: The Python Deep Learning library     https://keras.io/
 
