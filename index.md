@@ -21,18 +21,19 @@ As a part of our project, we have experimented with two different approaches for
 
 2. In this approach, we are extracting different features from the News headline as well as News body. Features include standard features used in NLP such as TF-IDF , N-grams , cosine similarity as well as some handpicked features such as presence of refuting words. Full list of features is given below. 
 
-### 3.1 LSTM Approach :
+### 3.1 Sequential/Dynamic Approach :
 
 Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote the sequence of word vectors corresponding to the words in the headline and (xa<sub>1</sub>,xa<sub>2</sub>, xa<sub>3</sub>, ...., xa<sub>n</sub>) denote sequence of words in the article. Each word in the sequence is respresented by a D dimensional embedding that was obtained from  <b> <a href = "https://nlp.stanford.edu/projects/glove/">  pretrained Stanford Global word vectors (GloVe) </a> </b> . We seperatly ecode the headline and body text. Firstly, we pass the headline embeddings to the first encoder and obtain an ecoding H = [h<sub>1</sub>, h<sub>2</sub>, ...., h<sub>n</sub>] and then we pass the artical body to the second encoder to obtain an ecoding A = [a<sub>1</sub>, a<sub>2</sub>, ...., a<sub>n</sub>]. Encodings tend to represent context information inside the News article and body. These encodings are appended and passed to a feedforward network, which further classifies the Headline-Body pair into 4 classes - agree, disagree, discuss, unrelated. Following figure depicts the model architecture. 
 
 
 <img src="https://github.com/amraw/Fake-News-Busters/blob/master/fnc-1-master/lstm.jpg" alt="Mountain View" width="500" height="377">
 
+### 3.2 Static Approach :
+ 
+In this approach, we are extracting following features and training a Feed-forward network on these features.  
 
-
-
-The features extracted from the headline and body are mentioned below:- 
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
+
 2. Word overlap: This feature depicts overlap between News headline and News Body. Higher the overlap, more the certainty that body of the News article agrees with headline. 
 
 3. Presence of refuting words: If the news article contains refuting words such as 'fraud', 'hoax', 'deny', it wouldn't inspire much confidence into the news article. 
