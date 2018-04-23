@@ -30,7 +30,7 @@ Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote
 
 ### 3.2 Static Approach :
  
-In this approach, we are extracting following features and training a Feed-forward network on these features.  
+In this approach  fesffefewffewffewffewfwef, we are extracting following features and training a Feed-forward network on these features.  
 
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
 
