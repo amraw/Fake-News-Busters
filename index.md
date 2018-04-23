@@ -27,9 +27,15 @@ Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote
 
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm.jpg" alt="Mountain View" width="500" height="377">
 
-#### - Exeprimental Results: 
+#### - Results: 
 	
-We experimented with different hyperparametrs such as .., .. , .. . Following tables show the confusion matrices for different setups. 
+We experimented with different sequence lengths - defined as number of words in the News article body fed to LSTM. Truncation of articles to specific length is required for batch processing since different articles have different lengths. Following tables show the confusion matrices and accuracies for different sequence lengths. 
+
+
+
+
+
+ Following tables show the confusion matrices for different setups. 
 
 
 
@@ -60,6 +66,9 @@ All the above features are appended and given to a feedforward network. Followin
 #### - results : 
 
 We were able to achieve 87.30 % accuracy on test set after experimenting with different hyperparametrs such as .., .., ... Following image shows the confusion matrix of the test set. 
+
+<img src="https://github.com/amraw/Fake-News-Busters/blob/master/fnc-1-master/lstm6.png" width = "200" height = "200">
+
 
 ## 4. Conclusion and Future Work : 
 
