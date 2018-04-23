@@ -35,6 +35,5 @@ The features extracted from the headline and body are mentioned below:-
 8. TF-IDF : In addition to all above features, we are also feeding raw TF-IDF of headline and body to the feedforward network.  
 
 
-<h2>HTML Image</h2>
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
 
