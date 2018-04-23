@@ -34,7 +34,7 @@ We experimented with different sequence lengths - defined as number of words in 
 
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm8.png" width = "250" height = "180">
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/loss_lstm_seperate_headline_body_300_0.txt.png" width = "250" height = "180"> 
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/loss_lstm_seperate_headline_body_300_0.txt.png" width = "250" height = "180"> 
 
  Following tables show the confusion matrices for different setups. 
 
