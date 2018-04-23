@@ -10,7 +10,7 @@ Since <a href="https://github.com/FakeNewsChallenge/fnc-1"> this fake news datas
 
 Reasearch in [1] is closely related to our problem where stance detection has been carried out on Twitter tweets. Given the tweet and the target - i.e., a politician, the goal is to estimate whether the tweet is in favor, against, or neutral toward the given target. The task is quite similar to our problem, where given the News headline and corresponding article body, we have to predict whether article body is agreeing, disagreeing, discussing or unrelated to the headline. In twitter stance detection, they are using bi-directional LSTM to read tweet condition on the target. 
 
-# Baseline Model 
+### Baseline Model 
 The organizers of Fake news challenge have provided a baseline model where they extracted features from the headline and body and passed it to a gradient boosting classifier. On the train set, they achieved an accuracy of 77%, and on the test set, they achieved an accuracy of 75%.  
 
 ## 3. Our Approach
