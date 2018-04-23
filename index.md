@@ -67,7 +67,7 @@ All the above features are appended and given to a feedforward network. Followin
 
 We were able to achieve 87.30 % accuracy on test set after experimenting with different hyperparametrs such as .., .., ... Following image shows the confusion matrix of the test set. 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm6.png" width = "250" height = "180"><img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm7.png" width = "250" height = "180"><img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm8.png" width = "250" height = "180">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm6.png" width = "250" height = "180">    <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm7.png" width = "250" height = "180">    <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm8.png" width = "250" height = "180">
 
 
 ## 4. Conclusion and Future Work : 
