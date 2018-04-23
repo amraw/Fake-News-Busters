@@ -26,11 +26,11 @@ As a part of our project, we have experimented with two different approaches for
 Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote the sequence of word vectors corresponding to the words in the headline and (xa<sub>1</sub>,xa<sub>2</sub>, xa<sub>3</sub>, ...., xa<sub>n</sub>) denote sequence of words in the article. Each word in the sequence is respresented by a D dimensional embedding that was obtained from  <b> <a href = "https://nlp.stanford.edu/projects/glove/">  pretrained Stanford Global word vectors (GloVe) </a> </b> . We seperatly ecode the headline and body text. Firstly, we pass the headline embeddings to the first encoder and obtain an ecoding H = [h<sub>1</sub>, h<sub>2</sub>, ...., h<sub>n</sub>] and then we pass the artical body to the second encoder to obtain an ecoding A = [a<sub>1</sub>, a<sub>2</sub>, ...., a<sub>n</sub>]. Encodings tend to represent context information inside the News article and body. These encodings are appended and passed to a feedforward network, which further classifies the Headline-Body pair into 4 classes - agree, disagree, discuss, unrelated. Following figure depicts the model architecture. 
 
 
-<img src="https://github.com/amraw/Fake-News-Busters/blob/master/fnc-1-master/lstm.png" alt="Mountain View" width="500" height="377">
+<img src="https://github.com/amraw/Fake-News-Busters/blob/master/fnc-1-master/lstm.jpg" alt="Mountain View" width="500" height="377">
 
 ### 3.2 Static Approach :
  
-In this approach  fesffefewffewffewffewfwef, we are extracting following features and training a Feed-forward network on these features.  
+In this approach, we are extracting following features and training a Feed-forward network on these features.  
 
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
 
@@ -48,7 +48,6 @@ In this approach  fesffefewffewffewffewfwef, we are extracting following feature
 
 8. TF-IDF : In addition to all above features, we are also feeding raw TF-IDF of headline and body to the feedforward network.  
 
-Hello
 
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
 
