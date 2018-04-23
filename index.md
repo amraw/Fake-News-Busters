@@ -48,6 +48,7 @@ In this approach, we are extracting following features and training a Feed-forwa
 
 8. TF-IDF : In addition to all above features, we are also feeding raw TF-IDF of headline and body to the feedforward network.  
 
+Hello
 
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
 
