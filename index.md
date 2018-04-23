@@ -36,5 +36,5 @@ The features extracted from the headline and body are mentioned below:-
 
 
 <h2>HTML Image</h2>
-<img src="https://github.com/amraw/Fake-News-Busters/blob/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
 
