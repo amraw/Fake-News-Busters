@@ -8,11 +8,21 @@ This tool can be used as a building block to develop an automated veracity check
 ## 2. Related Work
 Since <a href="https://github.com/FakeNewsChallenge/fnc-1"> this fake news dataset </a> is new, there are not enough papers to address this dataset. However, the stance detection and text classification task are thoroughly studied.
 
-Reasearch in [1] is closely related to our problem where stance detection has been carried out on Twitter tweets. In this task, given the tweet and the target, i.e., a politician, the goal is to estimate whether the tweet is in favor, against, or neutral toward the given target. The previous task is quite similar to our job given the article body we have to predict whether it is agreeing, disagreeing, discussing or unrelated to a given headline. In twitter stance detection they are using bi-directional LSTM to read tweet condition on the target. We are also planning something quite similar, but instead of bi-directional LSTM, we are using LSTM only that conditions the analysis of the headline on the article representation.
+Reasearch in [1] is closely related to our problem where stance detection has been carried out on Twitter tweets. Given the tweet and the target - i.e., a politician, the goal is to estimate whether the tweet is in favor, against, or neutral toward the given target. The task is quite similar to our problem, where given the News headline and corresponding article body, we have to predict whether article body is agreeing, disagreeing, discussing or unrelated to the headline. In twitter stance detection, they are using bi-directional LSTM to read tweet condition on the target. 
 
-The Fake news challenge team provided a baseline model where they extracted features from the headline and body and passed it to a gradient boosting classifier. On the train set, they achieved an accuracy of 77%, and on the test set, they achieved an accuracy of 75%.  In our model, we combined the features extracted from the headline and body and combined it with LSTM output and achieve an accuracy $$$$$.
+#Baseline Model 
+The organizers of Fake news challenge have provided a baseline model where they extracted features from the headline and body and passed it to a gradient boosting classifier. On the train set, they achieved an accuracy of 77%, and on the test set, they achieved an accuracy of 75%.  
 
-## 3. Method
+## 3. Our Approach
+
+As a part of our project, we have experimented with two different approaches for the problem of stance detection - 
+
+1. In this approach, we are using <a href = "https://deeplearning4j.org/lstm.html"> Long Short-term Memory Network </a> that conditions the analysis of headline on the article representation. The hope is that, LSTM will capture the context (and therefore stance/opinion) of the headline and body seperately. LSTM is followed by a simple feedforward network that will train itself to decide whether the opinion/stance expressed in the News headline matches with opinion/stance expressed in News article body. 
+
+2. In this approach, we are extracting different features from the News headline as well as News body. Features include standard features used in NLP such as TF-IDF , N-grams , cosine similarity as well as some handpicked features such as presence of refuting words. Full list of features is given below. 
+
+
+## 4. Method
 
 LSTM have been great in natural language processing task. That's why we choose it for our project.
 
