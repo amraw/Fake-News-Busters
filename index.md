@@ -10,7 +10,7 @@ Since <a href="https://github.com/FakeNewsChallenge/fnc-1"> this fake news datas
 
 Reasearch in [1] is closely related to our problem where stance detection has been carried out on Twitter tweets. Given the tweet and the target - i.e., a politician, the goal is to estimate whether the tweet is in favor, against, or neutral toward the given target. The task is quite similar to our problem, where given the News headline and corresponding article body, we have to predict whether article body is agreeing, disagreeing, discussing or unrelated to the headline. In twitter stance detection, they are using bi-directional LSTM to read tweet condition on the target. 
 
-### Baseline Model 
+### - Baseline Model 
 The organizers of Fake news challenge have provided a baseline model where they extracted features from the headline and body and passed it to a gradient boosting classifier. On the train set, they achieved an accuracy of 77%, and on the test set, they achieved an accuracy of 75%.  
 
 ## 3. Our Approach
@@ -21,12 +21,9 @@ As a part of our project, we have experimented with two different approaches for
 
 2. In this approach, we are extracting different features from the News headline as well as News body. Features include standard features used in NLP such as TF-IDF , N-grams , cosine similarity as well as some handpicked features such as presence of refuting words. Full list of features is given below. 
 
+### 3.1 LSTM Approach :
 
-## 4. Method
-
-LSTM have been great in natural language processing task. That's why we choose it for our project.
-
-Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote the sequence of word vectors corresponding to the words in the headline and (xa<sub>1</sub>,xa<sub>2</sub>, xa<sub>3</sub>, ...., xa<sub>n</sub>) denote sequence of words in the article. Each word in the sequence is respresented by a D dimensional embedding that was pretrained using GloVe. We seperatly ecode the headline and body text. Firstly, we pass the headline embeddings to the first encoder and obtain an ecoding H = [h<sub>1</sub>, h<sub>2</sub>, ...., h<sub>n</sub>] and then we pass the artical body to the second encoder to obtain an ecoding A = [a<sub>1</sub>, a<sub>2</sub>, ...., a<sub>n</sub>].
+Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote the sequence of word vectors corresponding to the words in the headline and (xa<sub>1</sub>,xa<sub>2</sub>, xa<sub>3</sub>, ...., xa<sub>n</sub>) denote sequence of words in the article. Each word in the sequence is respresented by a D dimensional embedding that was obtained from  <b> <a href = "https://deeplearning4j.org/lstm.html">  pretrained Stanford Global word vectors (GloVe) </a> </b> . We seperatly ecode the headline and body text. Firstly, we pass the headline embeddings to the first encoder and obtain an ecoding H = [h<sub>1</sub>, h<sub>2</sub>, ...., h<sub>n</sub>] and then we pass the artical body to the second encoder to obtain an ecoding A = [a<sub>1</sub>, a<sub>2</sub>, ...., a<sub>n</sub>].
 
 The features extracted from the headline and body are mentioned below:- 
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
