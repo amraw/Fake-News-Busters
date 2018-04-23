@@ -20,6 +20,20 @@ Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote
 
 The features extracted from the headline and body are mentioned below:- 
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
+2. Word overlap: This feature depicts overlap between News headline and News Body. Higher the overlap, more the certainty that body of the News article agrees with headline. 
+
+3. Presence of refuting words: If the news article contains refuting words such as 'fraud', 'hoax', 'deny', it wouldn't inspire much confidence into the news article. 
+
+4. Polarity: The polarity of headline and body is determined by counting number of negative sentiment words. We used NRC word-emotion Association Lexicon is used to obtain a list of negative emotions associated with English words. Polarity of corpus is assigned based on whether it has odd/even number of negative words. 
+
+5. Discuss Features: In this feature we are detecting presence of “discuss” words in the news article viz. tell, claim, verify etc. 
+
+6. Common N-Grams : This features indicates the extent of commonality in terms of N-grams between headline and body.  We experimented with N=2,3,5,6 grams.
+
+7. Binary co-occurrence: This feature counts how many times token in the headline occurs in body. 
+
+8. TF-IDF : In addition to all above features, we are also feeding raw TF-IDF of headline and body to the feedforward network.  
+
 
 <h2>HTML Image</h2>
 <img src="https://github.com/amraw/Fake-News-Busters/blob/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
