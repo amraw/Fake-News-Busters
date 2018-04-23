@@ -22,5 +22,5 @@ The features extracted from the headline and body are mentioned below:-
 1. Cosine similarity: -  Firstly the headline and body are converted to TF-IDF form and then cosine similarity is calculated between them.
 
 <h2>HTML Image</h2>
-<img src="feed.png" alt="Mountain View" width="500" height="377">
+<img src="/Users/nikhil/Desktop/project/feed.png" alt="Mountain View" width="500" height="377">
 
