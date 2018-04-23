@@ -28,6 +28,12 @@ Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote
 
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm.jpg" alt="Mountain View" width="500" height="377">
 
+#### - Exeprimental Results: 
+	
+We experimented with different hyperparametrs such as .., .. , .. . Following tables show the confusion matrices for different setups. 
+
+
+
 ### 3.2 Static Approach :
  
 In this approach, we are extracting following features and training a Feed-forward network on these features.  
@@ -48,6 +54,15 @@ In this approach, we are extracting following features and training a Feed-forwa
 
 8. TF-IDF : In addition to all above features, we are also feeding raw TF-IDF of headline and body to the feedforward network.  
 
+All the above features are appended and given to a feedforward network. Following figure depicts the model architecture and feature vector. 
 
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
+
+#### - results : 
+
+We were able to achieve 87.30 % accuracy on test set after experimenting with different hyperparametrs such as .., .., ... Following image shows the confusion matrix of the test set. 
+
+## 4. Conclusion and Future Work : 
+
+Honestly, we were suprised to see a simple feedforward network achieving higher accuracy than sophisticated LSTM model with pre-trained embeddings. We could account this to good feature enginering. Our hope before training LSTM was that, it should be able to extract the relevant features onn it's own as it captures the context. But clearly, manual feature engineering is giving us significant increase in accuracy. Now, the obvious question is, why didn't we try feeding engineered features to LSTM, and the simple answer is time restrictions. Three weeks is a really short time frame to implement the models, tune hyperparameters and conduct experiments. Nevertheless, this is something we definitely plan to do in the future. Secondly, we are really eager to try out bi-directional LSTM for this task. Advantages of bi-directional sequential models are well-known over uni-directional models, and this is something we definitely have in our bucketlist. Thirdly, we could always improve upon feature engineering and we plan to extract more relevant features for this task.  
 
