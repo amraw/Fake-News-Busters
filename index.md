@@ -32,7 +32,7 @@ Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote
 We experimented with different sequence lengths - defined as number of words in the News article body fed to LSTM. Truncation of articles to specific length is required for batch processing since different articles have different lengths. Apart from sequence lengths, we also experimented with hyperparameters of LSTm - no of GRUs, layers, pre-trained/BOW embeddings. We were able to achieve the best case accuracy of 72.30% on sequence length of 600, 200 LSTM cells, dropout probability of 0.5 , learning rate of 0.01. Following figures show the learning curve for training/validation datasets and confusion matrix for testing dataset. 
 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm8.png" width = "250" height = "180">			............................	<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/loss_lstm_seperate_headline_body_300_0.txt.png" width = "250" height = "180"> 
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm8.png" width = "250" height = "180">		 						............................						<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/loss_lstm_seperate_headline_body_300_0.txt.png" width = "250" height = "180"> 
 
  Following tables show the confusion matrices for different setups. 
 
