@@ -5,7 +5,7 @@ in this project, we are planning to develop a <b> <a href="https://web.stanford.
 this tool can be used as a building block to develop an <a href="http://ranger.uta.edu/~cli/pubs/2017/claimbuster-kdd17-hassan.pdf"> automated veracity checker </a> which can quickly check the veracity of a new claim based on the agreement with the claims made by other news organization with the known level of reliability and bias. Following figure depicts the problem with an example. 
 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/ex.png" alt="Mountain View" width="400" height="377">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/ex.png" align="middle" width="400" height="377">
 
 
 ## 2. Related Work
@@ -29,7 +29,7 @@ As a part of our project, we have experimented with two different approaches for
 Let (xh<sub>1</sub>,xh<sub>2</sub>, xh<sub>3</sub>, ...., xh<sub>n</sub>) denote the sequence of word vectors corresponding to the words in the headline and (xa<sub>1</sub>,xa<sub>2</sub>, xa<sub>3</sub>, ...., xa<sub>n</sub>) denote sequence of words in the article. Each word in the sequence is represented by a D dimensional embedding that was obtained from  <b> <a href = "https://nlp.stanford.edu/projects/glove/">  pretrained Stanford Global word vectors (GloVe) </a> </b> . We separately encode the headline and body text. Firstly, we pass the headline embeddings to the first encoder and obtain an encoding H = [h<sub>1</sub>, h<sub>2</sub>, ...., h<sub>n</sub>] and then we pass the article body to the second encoder to obtain an encoding A = [a<sub>1</sub>, a<sub>2</sub>, ...., a<sub>n</sub>]. Encodings tend to represent context information inside the News article and body. These encodings are appended and passed to a feedforward network, which further classifies the Headline-Body pair into 4 classes - agree, disagree, discuss, unrelated. Following figure depicts the model architecture. 
 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm.jpg" alt="Mountain View" width="500" height="377">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm.jpg" align="middle" width="500" height="377">
 
 #### - Results: 
 	
@@ -63,19 +63,19 @@ In this approach, we are extracting following features and training a Feed-forwa
 
 All the above features are appended and given to a feedforward network. Following figure depicts the model architecture and feature vector. 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed1.png" alt="Mountain View" width="500" height="377">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed1.png" align="middle" width="500" height="377">
 
 #### - results : 
 
 We were able to achieve 87.30 % accuracy on test set after experimenting with different hyperparametrs. Following image shows the confusion matrix of the test set. 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed_acc.png" alt="Mountain View" width="500" height="200">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/feed_acc.png" align="middle" width="500" height="200">
 
 ## 4. Accuracy Comparison
 
 Following table gives the performance comparison of different approaches. 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/accuracy.png" alt="Mountain View" width="500" height="200">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/accuracy.png" align="middle" width="500" height="200">
 
 
 ## 5. Conclusion and Future Work : 
