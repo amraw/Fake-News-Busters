@@ -5,7 +5,7 @@ in this project, we are planning to develop a <b> <a href="https://web.stanford.
 this tool can be used as a building block to develop an <a href="http://ranger.uta.edu/~cli/pubs/2017/claimbuster-kdd17-hassan.pdf"> automated veracity checker </a> which can quickly check the veracity of a new claim based on the agreement with the claims made by other news organization with the known level of reliability and bias. Following figure depicts the problem with an example. 
 
 
-<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/ex.png" align="middle" width="400" height="377">
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/ex.png" width="400" height="377" align = "middle">
 
 
 ## 2. Related Work
