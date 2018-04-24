@@ -38,7 +38,6 @@ We experimented with different sequence lengths - defined as number of words in 
 
 <img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/lstm8.png" width = "250" height = "180">		 						............................						<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/loss_lstm_seperate_headline_body_300_0.txt.png" width = "250" height = "180"> 
 
- Following tables show the confusion matrices for different setups. 
 
 
 
@@ -68,15 +67,22 @@ All the above features are appended and given to a feedforward network. Followin
 
 #### - results : 
 
-We were able to achieve 87.30 % accuracy on test set after experimenting with different hyperparametrs such as .., .., ... Following image shows the confusion matrix of the test set. 
+We were able to achieve 87.30 % accuracy on test set after experimenting with different hyperparametrs. Following image shows the confusion matrix of the test set. 
 
 
 
-## 4. Conclusion and Future Work : 
+## 4. Accuracy Comparison
+
+Following table gives the performance comparison of different approaches. 
+
+<img src="https://raw.githubusercontent.com/amraw/Fake-News-Busters/master/fnc-1-master/accuracy.png" alt="Mountain View" width="500" height="300">
+
+
+## 5. Conclusion and Future Work : 
 
 Honestly, we were surprised to see a simple feedforward network achieving higher accuracy than sophisticated LSTM model with pre-trained embeddings. We could account this to good feature engineering. Our hope before training LSTM was that, it should be able to extract the relevant features on it's own as it captures the context. But clearly, manual feature engineering is giving us significant increase in accuracy. Now, the obvious question is, why didn't we try feeding engineered features to LSTM, and the simple answer is time restrictions. Three weeks is a really short time frame to implement the models, tune hyperparameters and conduct experiments. Nevertheless, this is something we definitely plan to do in the future. Secondly, we are really eager to try out bi-directional LSTM for this task. Advantages of bi-directional sequential models are well-known over uni-directional models, and this is something we definitely have in our bucketlist. Thirdly, we could always improve upon feature engineering and we plan to extract more relevant features for this task. 
 
-## 5. References:
+## 6. References:
  
 [1] Isabelle Augenstein, Tim Rocktaschel, Andreas Vlachos & Kalina Bontcheva. 2016. Stance detection with bidirectional conditional encoding. In Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing (EMNLP). 
 
