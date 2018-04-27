@@ -1,19 +1,14 @@
 import os
 
 from keras.layers.embeddings import Embedding
-from keras.layers import Input, merge, TimeDistributed, concatenate
+from keras.layers import Input, concatenate
 from keras.layers.normalization import BatchNormalization
-from keras.layers.recurrent import GRU, LSTM
-from keras.layers.core import Flatten, Dropout, Dense
+from keras.layers.recurrent import LSTM
+from keras.layers.core import Dropout, Dense
 from keras.models import Model
-from keras.layers import Bidirectional
 import numpy as np
-import keras.backend as K
-from keras.callbacks import Callback
-from itertools import product
-from functools import partial
 import io
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
 
 def get_embeddings_index(glove_dir):
     embeddings_index = {}
@@ -45,16 +40,13 @@ def lstm_model(headline_length, body_length, embedding_dim, word_index, embeddin
 
     headline_input = Input(shape=(headline_length,), dtype='int32')
     headline_embedding = headline_embedding_layer(headline_input)
-    #headline_nor = BatchNormalization()(headline_embedding)
     headline_lstm = LSTM(cells)(headline_embedding)
 
     body_input = Input(shape=(body_length,), dtype='int32')
     body_embedding = bodies_embedding_layer(body_input)
-    #body_nor = BatchNormalization()(body_embedding)
     body_lstm = LSTM(cells)(body_embedding)
 
     concat = concatenate([headline_lstm, body_lstm])
-    #normalize = BatchNormalization()(concat)
 
     preds = Dense(4, activation='softmax')(concat)
 
@@ -64,7 +56,8 @@ def lstm_model(headline_length, body_length, embedding_dim, word_index, embeddin
     return fake_nn
 
 
-def lstm_model_2(globel_vectors, headline_length, body_length, embedding_dim, word_index, embedding_matrix, activation, numb_layers, drop_out, cells):
+def lstm_model_2(globel_vectors, headline_length, body_length, embedding_dim, word_index, embedding_matrix,
+                 activation, numb_layers, drop_out, cells):
     headline_embedding_layer = Embedding(len(word_index) + 1, embedding_dim, weights=[embedding_matrix],
                                          input_length=headline_length, trainable=False)
 
@@ -73,18 +66,15 @@ def lstm_model_2(globel_vectors, headline_length, body_length, embedding_dim, wo
 
     headline_input = Input(shape=(headline_length,), dtype='int32')
     headline_embedding = headline_embedding_layer(headline_input)
-    #headline_nor = BatchNormalization()(headline_embedding)
     headline_lstm = LSTM(cells)(headline_embedding)
 
     body_input = Input(shape=(body_length,), dtype='int32')
     body_embedding = bodies_embedding_layer(body_input)
-    #body_nor = BatchNormalization()(body_embedding)
     body_lstm = LSTM(cells)(body_embedding)
 
     global_vector_input = Input(shape=(globel_vectors,), dtype='float32')
 
     concat = concatenate([headline_lstm, body_lstm, global_vector_input])
-    #normalize = BatchNormalization()(concat)
 
     preds = Dense(4, activation='softmax')(concat)
 
@@ -111,6 +101,7 @@ def lstm_model_3(headline_length, body_length, embedding_dim, word_index, embedd
 
 
 def lstm_model_4(global_feat_length, headline_length, body_length, embedding_dim, word_index, embedding_matrix, activation, numb_layers, drop_out, cells):
+
     embedding_layer = Embedding(len(word_index) + 1, embedding_dim, weights=[embedding_matrix],
                                 input_length=headline_length + body_length, trainable=False)
 
@@ -128,6 +119,7 @@ def lstm_model_4(global_feat_length, headline_length, body_length, embedding_dim
 
 
 def feed_forward_network(input_vector, activation, numb_layers, drop_out):
+
     input = Input(shape=(input_vector,), dtype='float32')
     dense = Dense(numb_layers, activation=activation)(input)
     dropout = Dropout(drop_out)(dense)
@@ -137,3 +129,4 @@ def feed_forward_network(input_vector, activation, numb_layers, drop_out):
     print(fake_nn.summary())
     fake_nn.compile(loss="categorical_crossentropy", optimizer='adam', metrics=['acc'])
     return fake_nn
+

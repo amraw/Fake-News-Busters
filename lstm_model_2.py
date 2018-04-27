@@ -1,4 +1,3 @@
-import os
 from load_data import load_data
 from preprocessing import Preprocessing
 import os
@@ -8,12 +7,10 @@ from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.preprocessing import OneHotEncoder
-from feature_extraction import get_all_features, get_tfidf_vec
+from feature_extraction import get_text_features, get_tfidf_vec
 import models
 import pickle
 import csv
-import tensorflow as tf
-import keras.backend as K
 import sys
 import io
 

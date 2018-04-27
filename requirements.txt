@@ -1,5 +1,7 @@
-sklearn
+scikit-learn
 keras
 numpy
 tqdm
 tensorflow
+h5py
+nltk

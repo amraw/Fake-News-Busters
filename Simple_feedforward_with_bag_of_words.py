@@ -70,7 +70,7 @@ def feed_forward_model(numb_epocs):
     train_data_final, train_val, train_stances_final, stances_val = \
         train_test_split(train_data, train_stances_in, test_size=0.2, random_state=42)
 
-    # Compiling the Model
+    # Get the Model
     fake_nn = models.feed_forward_network(input_vector=(train_data.shape)[1], activation='relu', drop_out=0.5,
                                           numb_layers=100)
 
@@ -84,9 +84,9 @@ def feed_forward_model(numb_epocs):
                             epochs=int(numb_epocs), shuffle=True, validation_data=([train_val], stances_val),
                             callbacks=[early_stopping, model_checkpoint])
 
-    # Storing the training accuracy and loss of train and test data
+    # Storing the training and validation accuracy and loss in file for plot
     bow_list_data = []
-    with open(os.path.join(OBJECT_DUMP, "feedforward_network_" + str(1) + ".txt"), 'wb') as bow_hist:
+    with open(os.path.join(OBJECT_DUMP, "feedforward_network" + ".txt"), 'wb') as bow_hist:
         bow_list_data.append(fake_hist.history['acc'])
         bow_list_data.append(fake_hist.history['val_acc'])
         bow_list_data.append(fake_hist.history['loss'])
@@ -109,7 +109,7 @@ def feed_forward_model(numb_epocs):
 
     # Print the Accuracy, competition score and confusion matrix
     print_result("fnc-1-master/competition_test_stances.csv",
-                 RESULT_FILE + "feedforward_network_" + str(1) + ".csv")
+                 RESULT_FILE + "feedforward_network" + ".csv")
 
 
 if __name__ == '__main__':
