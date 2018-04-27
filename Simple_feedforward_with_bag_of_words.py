@@ -100,7 +100,7 @@ def feed_forward_model(numb_epocs):
     result_str = prepro.convert_lable_string(result)
     with io.open(TEST_FILE, mode='r', encoding='utf8') as read_file:
         test_stance = csv.DictReader(read_file)
-        with io.open(RESULT_FILE + "feedforward_network_"  + str(1) + ".csv", mode='w',
+        with io.open(RESULT_FILE + "feedforward_network" + ".csv", mode='w',
                      encoding='utf8') as write_file:
             writer = csv.DictWriter(write_file, fieldnames=['Headline', 'Body ID', 'Stance'])
             writer.writeheader()
