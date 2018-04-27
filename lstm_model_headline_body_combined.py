@@ -74,7 +74,7 @@ def lstm_model_headline_body_combin(body_length, numb_epoch):
     onehotencoder = OneHotEncoder()
     train_stances_in = onehotencoder.fit_transform(train_stances_in).toarray()
 
-    # Converting the labels to one hot encoder
+    # Splitting the data in train and validation
     train_data, val_data, train_stances_final, stances_val = \
         train_test_split(train_data, train_stances_in, test_size=0.2, random_state=42)
 
