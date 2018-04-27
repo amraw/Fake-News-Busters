@@ -109,13 +109,13 @@ def lstm_model(body_length, numb_epoch):
                             callbacks=[early_stopping, model_checkpoint])
 
     # Storing the training and validation accuracy and loss in file for plot
-    bow_list_data = []
+    lstm_data = []
     with open(os.path.join(OBJECT_DUMP, "lstm_seperate_headline_body_" + str(body_length) + ".txt"), 'wb') as bow_hist:
-        bow_list_data.append(fake_hist.history['acc'])
-        bow_list_data.append(fake_hist.history['val_acc'])
-        bow_list_data.append(fake_hist.history['loss'])
-        bow_list_data.append(fake_hist.history['val_loss'])
-        pickle.dump(bow_list_data, bow_hist)
+        lstm_data.append(fake_hist.history['acc'])
+        lstm_data.append(fake_hist.history['val_acc'])
+        lstm_data.append(fake_hist.history['loss'])
+        lstm_data.append(fake_hist.history['val_loss'])
+        pickle.dump(lstm_data, bow_hist)
 
     # Predict the labels for test data
     result = fake_nn.predict([test_headlines_seq, test_bodies_seq], batch_size=128)

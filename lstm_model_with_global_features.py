@@ -107,8 +107,6 @@ def lstm_model_glob_feature(body_length, numb_layers):
                                 activation='relu',
                                 drop_out=0.5, numb_layers=300, cells=200)
 
-    fake_nn.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
-
     # Early stopping and model checkpoint
     early_stopping = EarlyStopping(monitor='val_loss', patience=10)
     bst_model_path = 'Fake_news_nlp.h5'
@@ -120,13 +118,13 @@ def lstm_model_glob_feature(body_length, numb_layers):
                             callbacks=[early_stopping, model_checkpoint])
 
     # Storing the training and validation accuracy and loss in file for plot
-    bow_list_data = []
+    lstm_data = []
     with open(os.path.join(OBJECT_DUMP, "lstm_seperate_headline_body_glob_feature_" + str(body_length) + ".txt"), 'wb') as bow_hist:
-        bow_list_data.append(fake_hist.history['acc'])
-        bow_list_data.append(fake_hist.history['val_acc'])
-        bow_list_data.append(fake_hist.history['loss'])
-        bow_list_data.append(fake_hist.history['val_loss'])
-        pickle.dump(bow_list_data, bow_hist)
+        lstm_data.append(fake_hist.history['acc'])
+        lstm_data.append(fake_hist.history['val_acc'])
+        lstm_data.append(fake_hist.history['loss'])
+        lstm_data.append(fake_hist.history['val_loss'])
+        pickle.dump(lstm_data, bow_hist)
 
     # Predict the labels for test data
     result = fake_nn.predict([test_headlines_seq, test_bodies_seq, test_global_feature], batch_size=128)

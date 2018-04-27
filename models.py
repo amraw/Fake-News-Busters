@@ -84,7 +84,7 @@ def lstm_model_with_featrues(globel_vectors, headline_length, body_length, embed
     return fake_nn
 
 
-def lstm_model_3(headline_length, body_length, embedding_dim, word_index, embedding_matrix, activation, numb_layers, drop_out, cells):
+def lstm_with_combine_headline_body(headline_length, body_length, embedding_dim, word_index, embedding_matrix, activation, numb_layers, drop_out, cells):
     embedding_layer = Embedding(len(word_index) + 1, embedding_dim, weights=[embedding_matrix],
                                 input_length=headline_length + body_length, trainable=False)
 
@@ -95,24 +95,6 @@ def lstm_model_3(headline_length, body_length, embedding_dim, word_index, embedd
 
     preds = Dense(4, activation='softmax')(lstm)
     fake_nn = Model(input, outputs=preds)
-    print(fake_nn.summary())
-    fake_nn.compile(loss="categorical_crossentropy", optimizer='adam', metrics=['acc'])
-    return fake_nn
-
-
-def lstm_model_4(global_feat_length, headline_length, body_length, embedding_dim, word_index, embedding_matrix, activation, numb_layers, drop_out, cells):
-
-    embedding_layer = Embedding(len(word_index) + 1, embedding_dim, weights=[embedding_matrix],
-                                input_length=headline_length + body_length, trainable=False)
-
-    input = Input(shape=(headline_length + body_length,), dtype='int32')
-    embedding = embedding_layer(input)
-
-    lstm = LSTM(cells)(embedding)
-    global_vector_input = Input(shape=(global_feat_length,), dtype='float32')
-    concat = concatenate([lstm, global_vector_input])
-    preds = Dense(4, activation='softmax')(concat)
-    fake_nn = Model([input, global_vector_input], outputs=preds)
     print(fake_nn.summary())
     fake_nn.compile(loss="categorical_crossentropy", optimizer='adam', metrics=['acc'])
     return fake_nn
