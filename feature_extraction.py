@@ -43,7 +43,6 @@ def get_cosine_similarity(headlines, bodies, vec):
 
 
 def gen_or_load_feats(feat_fn, headlines, bodies, feature_file, vec=None):
-    print(os.path.isfile(feature_file))
     if not os.path.isfile(feature_file):
         feats = []
         if not vec is None:

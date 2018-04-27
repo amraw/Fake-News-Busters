@@ -81,7 +81,7 @@ def feed_forward_model(numb_epocs):
 
     # Fitting the model
     fake_hist = fake_nn.fit([train_data_final], train_stances_final, batch_size=128,
-                            epochs=numb_epocs, shuffle=True, validation_data=([train_val], stances_val),
+                            epochs=int(numb_epocs), shuffle=True, validation_data=([train_val], stances_val),
                             callbacks=[early_stopping, model_checkpoint])
 
     # Storing the training accuracy and loss of train and test data
