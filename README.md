@@ -5,4 +5,5 @@
    3. numpy
    4. tqdm
    5. tensorflow
-   6. 
+   
+2. Download the  
