@@ -20,6 +20,7 @@ OBJECT_DUMP = 'objects'
 
 
 def feed_forward_model(numb_epocs):
+
     prepro = Preprocessing()
     data = load_data()
 

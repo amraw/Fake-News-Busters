@@ -56,7 +56,7 @@ def lstm_model(headline_length, body_length, embedding_dim, word_index, embeddin
     return fake_nn
 
 
-def lstm_model_2(globel_vectors, headline_length, body_length, embedding_dim, word_index, embedding_matrix,
+def lstm_model_with_featrues(globel_vectors, headline_length, body_length, embedding_dim, word_index, embedding_matrix,
                  activation, numb_layers, drop_out, cells):
     headline_embedding_layer = Embedding(len(word_index) + 1, embedding_dim, weights=[embedding_matrix],
                                          input_length=headline_length, trainable=False)
