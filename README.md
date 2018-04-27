@@ -6,4 +6,4 @@
    4. tqdm
    5. tensorflow
    
-2. Download the  
+2. Download the global vector file <a href="http://nlp.stanford.edu/data/glove.6B.zip"> glove.6B.zip </a>
