@@ -258,12 +258,12 @@ def hand_features(headlines, bodies):
 
 def get_text_features(name, headline, headline_cl, body, body_cl, vec):
 
-    X_overlap = gen_or_load_feats(word_overlap_features, headline, body, "../features/overlap." + name + ".npy")
-    X_refuting = gen_or_load_feats(refuting_features, headline, body, "../features/refuting." + name + ".npy")
-    X_polarity = gen_or_load_feats(polarity_features, headline, body, "../features/polarity." + name + ".npy")
-    X_discuss = gen_or_load_feats(discuss_features, headline, body, "../features/discuss." + name + ".npy")
-    X_hand = gen_or_load_feats(hand_features, headline, body, "../features/hand." + name + ".npy")
-    X_cosine = gen_or_load_feats(get_cosine_similarity, headline_cl, body_cl, "../features/cosine." + name + ".npy", vec)
+    X_overlap = gen_or_load_feats(word_overlap_features, headline, body, "features/overlap." + name + ".npy")
+    X_refuting = gen_or_load_feats(refuting_features, headline, body, "features/refuting." + name + ".npy")
+    X_polarity = gen_or_load_feats(polarity_features, headline, body, "features/polarity." + name + ".npy")
+    X_discuss = gen_or_load_feats(discuss_features, headline, body, "features/discuss." + name + ".npy")
+    X_hand = gen_or_load_feats(hand_features, headline, body, "features/hand." + name + ".npy")
+    X_cosine = gen_or_load_feats(get_cosine_similarity, headline_cl, body_cl, "features/cosine." + name + ".npy", vec)
 
     X = np.c_[X_hand, X_polarity, X_refuting, X_discuss, X_overlap, X_cosine]
 
@@ -284,7 +284,7 @@ def get_tffreq_vec(alltext, lim_unigram):
 
 def headline_body_vec(name, headlines, bodies, global_feats, bow_vectorizer, tfreq_vectorizer):
     data = []
-    filename = "../features/headline_body_vec." + name + ".npy"
+    filename = "features/headline_body_vec." + name + ".npy"
     if not os.path.isfile(filename):
         index = 0
         for headline, body, glob_feat in tqdm(zip(headlines, bodies, global_feats)):
