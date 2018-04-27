@@ -6,4 +6,16 @@
    4. tqdm
    5. tensorflow
    
-2. Download the global vector file <a href="http://nlp.stanford.edu/data/glove.6B.zip"> glove.6B.zip </a>
+2. Download the global vector file <a href="http://nlp.stanford.edu/data/glove.6B.zip"> glove.6B.zip </a> and put the glove.6B.100d.txt file in gloVe folder
+
+3. For running the code: -
+   python file_name body_truncation_length number_epochs
+   
+   Example:-
+   
+   python lstm_model_with_seperate_headline_body_encoding.py 75 10
+   python lstm_model_headline_body_combined.py 75 10
+   python lstm_model_with_global_features.py 75 10
+
+4. Folders :-
+   1. 
