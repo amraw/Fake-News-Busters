@@ -256,7 +256,7 @@ def hand_features(headlines, bodies):
     return X
 
 
-def get_all_features(name, headline, headline_cl, body, body_cl, vec):
+def get_text_features(name, headline, headline_cl, body, body_cl, vec):
 
     X_overlap = gen_or_load_feats(word_overlap_features, headline, body, "../features/overlap." + name + ".npy")
     X_refuting = gen_or_load_feats(refuting_features, headline, body, "../features/refuting." + name + ".npy")
@@ -296,7 +296,7 @@ def headline_body_vec(name, headlines, bodies, global_feats, bow_vectorizer, tfr
             data.append(feat_vec)
             index += 1
         np.save(filename, data)
-        data = np.load(filename)
+    data = np.load(filename)
     return data
 
 
