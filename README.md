@@ -19,7 +19,7 @@
 
 4. Folders :-
    1. fnc-1-master :- Contain the test and train dataset
-   2. features :- Contain features
+   2. features :- Contain the text features extracted
    3. gloVe: Contains global vector file
    4. objects: Train and Validation accuracy and loss after each epoch is store here.
    5. prediction: Predicted result are store here.
