@@ -54,7 +54,7 @@ def lstm_model(body_length, numb_epoch):
     total_text = train_headlines_cl + train_bodies_cl + test_headlines_cl + test_bodies_cl
     token = Tokenizer(num_words=30000)
     token.fit_on_texts(total_text)
-    print('Number of Unique words: ' + len(token.word_index.keys()))
+    print('Number of Unique words: ' + str(len(token.word_index.keys())))
 
     # Convert headline and body to sequence
     train_headlines_seq = token.texts_to_sequences(train_headlines_cl)
